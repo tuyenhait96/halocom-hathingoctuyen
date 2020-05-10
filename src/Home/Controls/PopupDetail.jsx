@@ -44,7 +44,6 @@ function PopupDetail(props) {
   const { title, points, author, time, comments } = props.data;
   return (
     <PopupDetailStyled>
-      >
       <div className="popup-bound" id="popup_detail_id">
         <img
           src={ic_close_gray}

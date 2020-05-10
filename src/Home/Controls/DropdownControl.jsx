@@ -52,16 +52,24 @@ const Bound = styled.div`
 let isMousClick = false;
 function DropdownControl(props) {
   const [active, setActive] = useState(props.dropDownType);
-  const [isDropdown, setIsDropDown] = useState(false);
+
+  const checkShow = () => props.isShow === props.id;
 
   const onClickActive = (item) => {
     setActive(item);
-    setIsDropDown(false);
+  };
+
+  const onClickDropdown = () => {
+    if (checkShow()) {
+      props.setShow("");
+    } else {
+      props.setShow(props.id);
+    }
   };
 
   const _handleClick = () => {
     if (!isMousClick) {
-      setIsDropDown(false);
+      props.setShow("");
     }
   };
 
@@ -79,22 +87,20 @@ function DropdownControl(props) {
       onMouseLeave={() => (isMousClick = false)}
     >
       <p>{props.title}</p>
-      <div className="dropdown-cover">
-        <div
-          className="active-choice"
-          onClick={() => setIsDropDown(!isDropdown)}
-        >
+      <div className="dropdown-cover" onClick={() => onClickDropdown()}>
+        <div className="active-choice" onBlur={() => props.setShow("")}>
           {active}
           <img
             src={ic_arrow_down}
             alt="ic_arrow_down"
             style={{
-              transform: isDropdown ? "rotate(-180deg)" : "unset",
+              transform:
+                props.id === props.isShow ? "rotate(-180deg)" : "unset",
               transition: "all 300ms ease",
             }}
           />
         </div>
-        {isDropdown &&
+        {props.id === props.isShow &&
           Object.keys(props.dropDownSearch).map((item, i) => {
             return (
               <div

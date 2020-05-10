@@ -75,3 +75,23 @@ export const dropDownSearch = {
     value: "Stories",
   },
 };
+
+export const dropDownTypePopularity = {
+  Popularity: "Popularity",
+};
+export const dropDownPopularity = {
+  [dropDownTypePopularity.Popularity]: {
+    type: "Popularity",
+    value: "Popularity",
+  },
+};
+
+export const dropDownTypeTime = {
+  All_time: "All time",
+};
+export const dropDownTime = {
+  [dropDownTypeTime.All_time]: {
+    type: "All_time",
+    value: "All time",
+  },
+};

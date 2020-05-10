@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
-
 //Data
-import { dropDownSearch, dropDownTypeSearch, MOBILE } from "../../data/data";
-// Images
-import logo_hn from "../../images/logo-hn.png";
+import {
+  dropDownPopularity,
+  dropDownSearch,
+  dropDownTime,
+  dropDownTypePopularity,
+  dropDownTypeSearch,
+  dropDownTypeTime,
+  MOBILE,
+} from "../../data/data";
 import ic_more_white from "../../images/ic_more_white.png";
 import ic_search from "../../images/ic_search.jpg";
+// Images
+import logo_hn from "../../images/logo-hn.png";
 import logo_vietinbank from "../../images/logo_vietinbank.svg";
 //Control
 import DropdownControl from "./DropdownControl";
@@ -99,6 +106,11 @@ const Bound = styled.header`
 
 function Header(props) {
   const [searchItem, setSearchItem] = useState("");
+  const [isShow, setShow] = useState("");
+
+  const setIsShow = (id) => {
+    setShow(id);
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -138,6 +150,25 @@ function Header(props) {
           dropDownType={dropDownTypeSearch.Stories}
           dropDownSearch={dropDownSearch}
           title="Search"
+          id="search"
+          isShow={isShow}
+          setShow={setIsShow}
+        />
+        <DropdownControl
+          dropDownType={dropDownTypePopularity.Popularity}
+          dropDownSearch={dropDownPopularity}
+          title="by"
+          id="by"
+          isShow={isShow}
+          setShow={setIsShow}
+        />
+        <DropdownControl
+          dropDownType={dropDownTypeTime.All_time}
+          dropDownSearch={dropDownTime}
+          title="for"
+          id="for"
+          isShow={isShow}
+          setShow={setIsShow}
         />
       </div>
     </Bound>
